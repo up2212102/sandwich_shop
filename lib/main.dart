@@ -15,8 +15,14 @@ class App extends StatelessWidget { // Defines a widget named App that does not 
         appBar: AppBar(
           title: const Text('Sandwich Counter'), // Displays title in top
         ),
-        body: const Center(
-          child: OrderItemDisplay (5, 'Footlong') // Welcome on center of screen
+        body: Center(
+          child: Container(
+            width: 350,
+            height: 250,
+            color: Colors.blue,
+            alignment: Alignment.center,
+            child: const OrderItemDisplay(5, 'Club'), // Welcome on center of screen
+          ),
         ),
       ),
     ); // Returns a widget tree
