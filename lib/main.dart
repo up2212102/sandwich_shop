@@ -9,7 +9,19 @@ class App extends StatelessWidget { // Defines a widget named App that does not 
 
   @override // Indicates following method overrides a superclass
   Widget build(BuildContext context) { // The build method describes how to display a widget
-    return Container(); // Returns an empty Container widget (no UI is shown)
+    return MaterialApp(
+      title: 'Sandwich Shop App', // Sets app title
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Sandwich Counter'), // Displays title in top
+        ),
+        body: const Center(
+          child: Text(
+            'Welcome to the Sandwich Shop!', // Welcome on center of screen
+          ),
+        ),
+      ),
+    ); // Returns a widget tree
   }
 }
 
