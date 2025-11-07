@@ -15,17 +15,64 @@ class App extends StatelessWidget { // Defines a widget named App that does not 
         appBar: AppBar(
           title: const Text('Sandwich Counter'), // Displays title in top
         ),
-        body: Center(
-          child: Container(
-            width: 350,
-            height: 250,
-            color: Colors.blue,
-            alignment: Alignment.center,
-            child: const OrderItemDisplay(5, 'Club'), // Welcome on center of screen
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Row( // A Row to display multiple OrderItemDisplays horizontally
+              children: [
+                // Box 1
+                Expanded(
+                  child: SizedBox(
+                    height: 120,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: ColoredBox(
+                        color: Colors.blue,
+                        child: Center(
+                          child: OrderItemDisplay(3, 'BLT'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                // Box 2
+                Expanded(
+                  child: SizedBox(
+                    height: 120,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: ColoredBox(
+                        color: Colors.blue,
+                        child: Center(
+                          child: OrderItemDisplay(5, 'Club'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                // Box 3
+                Expanded(
+                  child: SizedBox(
+                    height: 120,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: ColoredBox(
+                        color: Colors.blue,
+                        child: Center(
+                          child: OrderItemDisplay(2, 'Veggie'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ); // Returns a widget tree
+    );
   }
 }
 
@@ -37,9 +84,14 @@ class OrderItemDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("$quantity $itemType sandwich(es): ${'🥪' * quantity}");
+    return Text(
+      "$quantity $itemType sandwich(es): ${'🥪' * quantity}",
+      textAlign: TextAlign.center,
+    );
   }
 }
+
+
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
