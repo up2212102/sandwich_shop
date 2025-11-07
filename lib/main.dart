@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  //runApp(const MyApp());
+  runApp(const App());
+}
+
+class App extends StatelessWidget { // Defines a widget named App that does not hold state
+  const App({super.key}); // Constructor for App, allowing an optional key for widget identification
+
+  @override // Indicates following method overrides a superclass
+  Widget build(BuildContext context) { // The build method describes how to display a widget
+    return Container(); // Returns an empty Container widget (no UI is shown)
+  }
 }
 
 // class MyApp extends StatelessWidget {
