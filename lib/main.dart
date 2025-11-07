@@ -16,9 +16,7 @@ class App extends StatelessWidget { // Defines a widget named App that does not 
           title: const Text('Sandwich Counter'), // Displays title in top
         ),
         body: const Center(
-          child: Text(
-            'Welcome to the Sandwich Shop!', // Welcome on center of screen
-          ),
+          child: OrderItemDisplay (5, 'Footlong') // Welcome on center of screen
         ),
       ),
     ); // Returns a widget tree
