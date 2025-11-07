@@ -4,73 +4,41 @@ void main() {
   runApp(const App());
 }
 
-class App extends StatelessWidget { // Defines a widget named App that does not hold state
-  const App({super.key}); // Constructor for App, allowing an optional key for widget identification
+class App extends StatelessWidget {
+  // Defines a widget named App that does not hold state
+  const App(
+      {super.key}); // Constructor for App, allowing an optional key for widget identification
 
   @override // Indicates following method overrides a superclass
-  Widget build(BuildContext context) { // The build method describes how to display a widget
+  Widget build(BuildContext context) {
+    // The build method describes how to display a widget
     return MaterialApp(
       title: 'Sandwich Shop App', // Sets app title
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Sandwich Counter'), // Displays title in top
-        ),
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Row( // A Row to display multiple OrderItemDisplays horizontally
-              children: [
-                // Box 1
-                Expanded(
-                  child: SizedBox(
-                    height: 120,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: ColoredBox(
-                        color: Colors.blue,
-                        child: Center(
-                          child: OrderItemDisplay(3, 'BLT'),
-                        ),
-                      ),
-                    ),
+        appBar: AppBar(title: const Text('Sandwich Counter')),
+        // The bit that you need to update starts from here
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const OrderItemDisplay(5, 'Footlong'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => print('Add button pressed!'),
+                    child: const Text('Add'),
                   ),
-                ),
-
-                // Box 2
-                Expanded(
-                  child: SizedBox(
-                    height: 120,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: ColoredBox(
-                        color: Colors.blue,
-                        child: Center(
-                          child: OrderItemDisplay(5, 'Club'),
-                        ),
-                      ),
-                    ),
+                  ElevatedButton(
+                    onPressed: () => print('Remove button pressed!'),
+                    child: const Text('Remove'),
                   ),
-                ),
-
-                // Box 3
-                Expanded(
-                  child: SizedBox(
-                    height: 120,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: ColoredBox(
-                        color: Colors.blue,
-                        child: Center(
-                          child: OrderItemDisplay(2, 'Veggie'),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
         ),
+        // The bit that you need to update ends here
       ),
     );
   }
@@ -90,8 +58,6 @@ class OrderItemDisplay extends StatelessWidget {
     );
   }
 }
-
-
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
