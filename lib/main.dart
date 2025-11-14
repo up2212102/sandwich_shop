@@ -29,6 +29,7 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
+  final TextEditingController _noteController = TextEditingController();
   void _increaseQuantity() {
     if (_quantity < widget.maxQuantity) {
       setState(() => _quantity++);
@@ -51,20 +52,35 @@ class _OrderScreenState extends State<OrderScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+              child: TextField(
+                controller: _noteController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Order Note',
+                  hintText: 'e.g., No onions, extra pickles',
+                ),
+              ),
+            ),
             OrderItemDisplay(
               _quantity,
               'Footlong',
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: _increaseQuantity,
-                  child: const Text('Add'),
+                Expanded(
+                  child: StyledButton(
+                    text: 'Add',
+                    onPressed: _quantity < widget.maxQuantity ? _increaseQuantity : null,
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: _decreaseQuantity,
-                  child: const Text('Remove'),
+                const SizedBox(width: 16), // Bigger gap
+                Expanded(
+                  child: StyledButton(
+                    text: 'Remove',
+                    onPressed: _quantity > 0 ? _decreaseQuantity : null,
+                  ),
                 ),
               ],
             ),
@@ -86,6 +102,32 @@ class OrderItemDisplay extends StatelessWidget {
     return Text(
       "$quantity $itemType sandwich(es): ${'🥪' * quantity}",
       textAlign: TextAlign.center,
+    );
+  }
+}
+class StyledButton extends StatelessWidget {
+  final String text;
+  final VoidCallback? onPressed; // <-- make this nullable
+  final Color backgroundColor;
+  final Color foregroundColor;
+
+  const StyledButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.backgroundColor = Colors.red,
+    this.foregroundColor = Colors.white,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed, // works with null to disable
+      style: ElevatedButton.styleFrom(
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+      ),
+      child: Text(text),
     );
   }
 }
