@@ -30,6 +30,9 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
   final TextEditingController _noteController = TextEditingController();
+  int _selectedSandwichIndex = 0;
+  final List<String> _sandwichTypes = ['Footlong', 'Six-inch'];
+  
   void _increaseQuantity() {
     if (_quantity < widget.maxQuantity) {
       setState(() => _quantity++);
@@ -63,9 +66,33 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: ToggleButtons(
+                isSelected: [
+                  _selectedSandwichIndex == 0,
+                  _selectedSandwichIndex == 1,
+                ],
+                onPressed: (int index) {
+                  setState(() {
+                    _selectedSandwichIndex = index;
+                  });
+                },
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text('Footlong'),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text('Six-inch'),
+                  ),
+                ],
+              ),
+            ),
             OrderItemDisplay(
               _quantity,
-              'Footlong',
+              _sandwichTypes[_selectedSandwichIndex],
             ),
             Row(
               children: [
@@ -75,7 +102,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     onPressed: _quantity < widget.maxQuantity ? _increaseQuantity : null,
                   ),
                 ),
-                const SizedBox(width: 16), // Bigger gap
+                const SizedBox(width: 16),
                 Expanded(
                   child: StyledButton(
                     text: 'Remove',
