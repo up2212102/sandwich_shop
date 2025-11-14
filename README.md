@@ -23,7 +23,7 @@ A modern Flutter app for building and customizing sandwich orders. This project 
 ### Getting Started
 1. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
+   git clone <https://github.com/up2212102/sandwich_shop.git>
    cd sandwich_shop
    ```
 2. **Install dependencies:**
