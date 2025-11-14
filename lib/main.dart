@@ -5,41 +5,13 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  // Defines a widget named App that does not hold state
-  const App(
-      {super.key}); // Constructor for App, allowing an optional key for widget identification
+  const App({super.key});
 
-  @override // Indicates following method overrides a superclass
+  @override
   Widget build(BuildContext context) {
-    // The build method describes how to display a widget
-    return MaterialApp(
-      title: 'Sandwich Shop App', // Sets app title
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Sandwich Counter')),
-        // The bit that you need to update starts from here
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const OrderItemDisplay(5, 'Footlong'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => print('Add button pressed!'),
-                    child: const Text('Add'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => print('Remove button pressed!'),
-                    child: const Text('Remove'),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        // The bit that you need to update ends here
-      ),
+    return const MaterialApp(
+      title: 'Sandwich Shop App',
+      home: OrderScreen(maxQuantity: 5),
     );
   }
 }
