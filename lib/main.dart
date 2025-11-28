@@ -64,7 +64,7 @@ class _OrderScreenState extends State<OrderScreen> {
       );
 
       setState(() {
-        _cart.add(sandwich, quantity: _quantity);
+        _cart.addSandwich(sandwich, quantity: _quantity);
       });
 
       String sizeText;
