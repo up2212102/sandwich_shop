@@ -252,6 +252,32 @@ class _OrderScreenState extends State<OrderScreen> {
                 ],
               ),
               const SizedBox(height: 20),
+              // Permanent cart summary display
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.yellow[100],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Cart: ${_cart.items.fold<int>(0, (sum, item) => sum + item.quantity)} item(s)',
+                        key: const Key('cart_items_text'),
+                        style: heading2,
+                      ),
+                      Text(
+                        'Total: £${_cart.totalPrice}',
+                        key: const Key('cart_total_text'),
+                        style: heading2,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               StyledButton(
                 onPressed: _getAddToCartCallback(),
                 icon: Icons.add_shopping_cart,
