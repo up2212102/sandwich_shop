@@ -200,6 +200,7 @@ class _OrderScreenState extends State<OrderScreen> {
               ),
               const SizedBox(height: 20),
               DropdownMenu<SandwichType>(
+                key: const Key('sandwich_type_dropdown'),
                 width: double.infinity,
                 label: const Text('Sandwich Type'),
                 textStyle: normalText,
@@ -221,6 +222,7 @@ class _OrderScreenState extends State<OrderScreen> {
               ),
               const SizedBox(height: 20),
               DropdownMenu<BreadType>(
+                key: const Key('bread_type_dropdown'),
                 width: double.infinity,
                 label: const Text('Bread Type'),
                 textStyle: normalText,
@@ -237,7 +239,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     onPressed: _getDecreaseCallback(),
                     icon: const Icon(Icons.remove),
                   ),
-                  Text('$_quantity', style: heading2),
+                  Text('$_quantity', key: const Key('quantity_text'), style: heading2),
                   IconButton(
                     onPressed: _increaseQuantity,
                     icon: const Icon(Icons.add),
